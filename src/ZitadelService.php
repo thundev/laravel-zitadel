@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Thundev\Zitadel;
 
-use App\Integrations\HttpClient;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 use Thundev\Zitadel\Contracts\ZitadelServiceContract;
@@ -15,13 +14,13 @@ use Thundev\Zitadel\Traits\HasAuthorizeRequests;
 use Thundev\Zitadel\Traits\HasCreateUserRequests;
 use Thundev\Zitadel\Traits\HasSessionRequests;
 
-class ZitadelService extends HttpClient implements ZitadelServiceContract
+class ZitadelService extends ZitadelHttpClient implements ZitadelServiceContract
 {
     use HasAuthorizeRequests, HasCreateUserRequests, HasSessionRequests;
 
     public function __construct(
         private readonly string $baseUri,
-        private readonly string $serviceUserToken,
+        private readonly string $apiToken,
     ) {
     }
 
@@ -54,7 +53,7 @@ class ZitadelService extends HttpClient implements ZitadelServiceContract
         $config[RequestOptions::TIMEOUT] = 30;
         $config[RequestOptions::CONNECT_TIMEOUT] = 30;
         $config[RequestOptions::HEADERS] = [
-            'Authorization' => 'Bearer ' . $this->serviceUserToken,
+            'Authorization' => "Bearer $this->apiToken",
             'Content-Type' => 'application/json',
         ];
 

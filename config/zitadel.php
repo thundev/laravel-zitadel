@@ -3,6 +3,6 @@
 declare(strict_types=1);
 
 return [
-    'base_uri' => 'https://example.com',
-    'api_token' => '',
+    'base_uri' => env('ZITADEL_BASE_URI', ''),
+    'api_token' => env('ZITADEL_API_TOKEN', ''),
 ];

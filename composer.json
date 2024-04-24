@@ -1,16 +1,23 @@
 {
     "name": "thundev/laravel-zitadel",
     "description": "zitadel proxy",
-    "minimum-stability": "stable",
+    "type": "library",
+    "minimum-stability": "dev",
     "license": "proprietary",
     "authors": [],
+    "autoload": {
+        "psr-4": {
+            "Thundev\\Zitadel\\": "src/"
+        }
+    },
     "require": {
         "php": "^8.3",
-        "laravel/framework": "^11.0",
-        "spatie/laravel-data": "^4.4"
+        "spatie/laravel-data": "^4.4",
+        "guzzlehttp/guzzle": "^7.4"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-latest"
+        "roave/security-advisories": "dev-latest",
+        "orchestra/testbench": "^8.22"
     },
     "extra": {
         "laravel": {
