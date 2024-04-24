@@ -1,0 +1,25 @@
+{
+    "name": "thundev/laravel-zitadel",
+    "description": "zitadel proxy",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [],
+    "require": {
+        "php": "^8.3",
+        "laravel/framework": "^11.0",
+        "spatie/laravel-data": "^4.4"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Thundev\\Zitadel\\Providers\\ZitadelServiceProvider"
+            ],
+            "aliases": {
+                "ZitadelService": "Thundev\\Zitadel\\Facades\\ZitadelService"
+            }
+        }
+    }
+}
