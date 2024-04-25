@@ -12,14 +12,14 @@ use Psr\Http\Message\ResponseInterface;
 
 abstract class ZitadelHttpClient
 {
-    protected ?ClientInterface $client = null;
+    private ?ClientInterface $client = null;
 
     /**
      * @throws GuzzleException
      */
     public function request(string $method, string $uri = '', array $options = []): ResponseInterface
     {
-        return $this->getClient()->request($method, $uri, $this->requestOptions($options));
+        return $this->getClient()->request($method, $uri, $options);
     }
 
     public function decodeResponse(ResponseInterface $response, bool $assoc = true): mixed
@@ -34,11 +34,6 @@ abstract class ZitadelHttpClient
         }
 
         return $this->client;
-    }
-
-    protected function requestOptions(array $options): array
-    {
-        return $options;
     }
 
     protected function getClientConfig(): array

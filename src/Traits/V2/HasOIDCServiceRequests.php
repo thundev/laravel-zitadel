@@ -1,20 +1,18 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Thundev\Zitadel\Traits;
+namespace Thundev\Zitadel\Traits\V2;
 
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 use Thundev\Zitadel\Requests\CreateSession\CreateSessionRequest;
 use Thundev\Zitadel\Responses\CreateSession\CreateSessionResponse;
 
-trait HasSessionRequests
+trait HasOIDCServiceRequests
 {
     /** @throws GuzzleException */
     public function createSession(CreateSessionRequest $request): CreateSessionResponse
     {
-        $response = $this->request('POST', '/v2beta/sessions', [
+        $response = $this->request('POST', $this->generateUrlApiV2('sessions'), [
             RequestOptions::JSON => $request->toArray(),
         ]);
 
