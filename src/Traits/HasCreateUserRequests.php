@@ -16,7 +16,7 @@ trait HasCreateUserRequests
     /** @throws GuzzleException */
     public function createMachineUser(CreateMachineUserRequest $request): CreateMachineUserResponse
     {
-        $response = $this->request('POST', 'v2beta/users/machine', [
+        $response = $this->request('POST', 'users/machine', [
             RequestOptions::JSON => $request->toArray(),
         ]);
 

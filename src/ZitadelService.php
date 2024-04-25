@@ -27,7 +27,7 @@ class ZitadelService extends ZitadelHttpClient implements ZitadelServiceContract
     /** @throws GuzzleException */
     public function searchUserGrants(SearchUserGrantsRequest $request): SearchUserGrantsResponse
     {
-        $response = $this->request('POST', 'v2beta/users/grants/_search', [
+        $response = $this->request('POST', 'users/grants/_search', [
             RequestOptions::JSON => $request->toArray(),
         ]);
 
@@ -39,7 +39,7 @@ class ZitadelService extends ZitadelHttpClient implements ZitadelServiceContract
     /**  @throws GuzzleException */
     public function createMachineUserSecret(string $userId): CreateMachineUserSecretResponse
     {
-        $response = $this->request('PUT', "v2beta/users/$userId/secret");
+        $response = $this->request('PUT', "users/$userId/secret");
 
         return CreateMachineUserSecretResponse::from(
             $this->decodeResponse($response)
