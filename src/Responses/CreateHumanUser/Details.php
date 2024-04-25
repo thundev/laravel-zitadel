@@ -9,7 +9,7 @@ use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 use Spatie\LaravelData\Data;
 
-class DetailsItem extends Data
+class Details extends Data
 {
     public function __construct(
         public readonly string $sequence,

@@ -16,10 +16,10 @@ class CreateSessionRequest extends Data
 {
     public function __construct(
         public readonly Check|Optional $checks,
-        public readonly array $metadata,
-        public readonly Challenge $challenges,
-        public readonly UserAgent $userAgent,
-        public readonly string $lifetime,
+        public readonly array|Optional $metadata,
+        public readonly Challenge|Optional $challenges,
+        public readonly UserAgent|Optional $userAgent,
+        public readonly string|Optional $lifetime,
     ) {
     }
 }

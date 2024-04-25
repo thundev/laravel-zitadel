@@ -11,7 +11,7 @@ class CreateHumanUserResponse extends Data
 {
     public function __construct(
         public readonly string $userId,
-        public readonly DetailsItem $details,
+        public readonly Details $details,
         public readonly string|Optional $emailCode,
         public readonly string|Optional $phoneCode,
     ) {
