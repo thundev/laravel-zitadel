@@ -10,6 +10,7 @@ use Thundev\Zitadel\Requests\V1\OrganizationObjects\User\CreateMachineUserReques
 use Thundev\Zitadel\Requests\V1\OrganizationObjects\UserGrants\SearchUserGrants\SearchUserGrantsRequest;
 use Thundev\Zitadel\Requests\V2\OIDCService\CreateHumanUser\CreateHumanUserRequest;
 use Thundev\Zitadel\Requests\V2\SessionService\CreateSession\CreateSessionRequest;
+use Thundev\Zitadel\Requests\V2\SessionService\GetSessionRequest;
 use Thundev\Zitadel\Requests\V2\SessionService\SearchSessions\SearchSessionsRequest;
 use Thundev\Zitadel\Requests\V2\UserService\FinalizeAuthRequest\FinalizeAuthRequest;
 use Thundev\Zitadel\Responses\V1\OrganizationObjects\User\CreateMachineUser\CreateMachineUserResponse;
@@ -17,6 +18,7 @@ use Thundev\Zitadel\Responses\V1\OrganizationObjects\User\CreateMachineUserSecre
 use Thundev\Zitadel\Responses\V1\OrganizationObjects\UserGrants\SearchUserGrants\SearchUserGrantsResponse;
 use Thundev\Zitadel\Responses\V2\OIDCService\CreateHumanUser\CreateHumanUserResponse;
 use Thundev\Zitadel\Responses\V2\SessionService\CreateSession\CreateSessionResponse;
+use Thundev\Zitadel\Responses\V2\SessionService\GetSessionResponse;
 use Thundev\Zitadel\Responses\V2\SessionService\SearchSessions\SearchSessionsResponse;
 use Thundev\Zitadel\Responses\V2\UserService\FinalizeAuthRequest\FinalizeAuthRequestResponse;
 
@@ -95,6 +97,18 @@ class ZitadelServiceFake implements ZitadelServiceContract
         ]);
     }
 
+    public function getSession(GetSessionRequest $request): GetSessionResponse
+    {
+        return GetSessionResponse::from([
+            'session' => [
+                'id' => '2',
+                'creationDate' => now(),
+                'changeDate' => now(),
+                'expirationDate' => now(),
+            ],
+        ]);
+    }
+
     public function createSession(CreateSessionRequest $request): CreateSessionResponse
     {
         return CreateSessionResponse::from([
@@ -108,8 +122,10 @@ class ZitadelServiceFake implements ZitadelServiceContract
         ]);
     }
 
-    public function finalizeAuthRequest(string $authRequestId, FinalizeAuthRequest $request): FinalizeAuthRequestResponse
-    {
+    public function finalizeAuthRequest(
+        string $authRequestId,
+        FinalizeAuthRequest $request
+    ): FinalizeAuthRequestResponse {
         return FinalizeAuthRequestResponse::from([
             'callbackUrl' => fake()->url,
             'details' => [

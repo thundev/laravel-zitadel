@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Thundev\Zitadel\Responses\V2\SessionService\SearchSessions;
+namespace Thundev\Zitadel\Responses\V2\SessionService;
 
 use Spatie\LaravelData\Data;
 

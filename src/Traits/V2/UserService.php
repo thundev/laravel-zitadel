@@ -10,8 +10,10 @@ use Thundev\Zitadel\Responses\V2\UserService\FinalizeAuthRequest\FinalizeAuthReq
 trait UserService
 {
     /** @throws GuzzleException */
-    public function finalizeAuthRequest(string $authRequestId, FinalizeAuthRequest $request): FinalizeAuthRequestResponse
-    {
+    public function finalizeAuthRequest(
+        string $authRequestId,
+        FinalizeAuthRequest $request
+    ): FinalizeAuthRequestResponse {
         $response = $this->request('POST', "/v2beta/oidc/auth_requests/$authRequestId", [
             RequestOptions::JSON => $request->toArray(),
         ]);
