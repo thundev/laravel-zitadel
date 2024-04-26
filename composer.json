@@ -1,8 +1,8 @@
 {
     "name": "thundev/laravel-zitadel",
-    "description": "zitadel proxy",
+    "description": "zitadel client",
     "type": "library",
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "license": "proprietary",
     "authors": [],
     "autoload": {
@@ -22,7 +22,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Thundev\\Zitadel\\Providers\\ZitadelServiceProvider"
+                "Thundev\\Zitadel\\ZitadelServiceProvider"
             ],
             "aliases": {
                 "ZitadelService": "Thundev\\Zitadel\\Facades\\ZitadelService"

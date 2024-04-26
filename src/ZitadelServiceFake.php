@@ -6,17 +6,19 @@ namespace Thundev\Zitadel;
 
 use Illuminate\Support\Facades\Hash;
 use Thundev\Zitadel\Contracts\ZitadelServiceContract;
-use Thundev\Zitadel\Requests\CreateHumanUser\CreateHumanUserRequest;
-use Thundev\Zitadel\Requests\CreateMachineUserRequest;
-use Thundev\Zitadel\Requests\CreateSession\CreateSessionRequest;
-use Thundev\Zitadel\Requests\FinalizeAuth\FinalizeAuthRequest;
-use Thundev\Zitadel\Requests\SearchUserGrants\SearchUserGrantsRequest;
-use Thundev\Zitadel\Responses\CreateHumanUser\CreateHumanUserResponse;
-use Thundev\Zitadel\Responses\CreateMachineUser\CreateMachineUserResponse;
-use Thundev\Zitadel\Responses\CreateMachineUserSecret\CreateMachineUserSecretResponse;
-use Thundev\Zitadel\Responses\CreateSession\CreateSessionResponse;
-use Thundev\Zitadel\Responses\FinalizeAuth\FinalizeAuthResponse;
-use Thundev\Zitadel\Responses\SearchUserGrants\SearchUserGrantsResponse;
+use Thundev\Zitadel\Requests\V1\OrganizationObjects\User\CreateMachineUserRequest;
+use Thundev\Zitadel\Requests\V1\OrganizationObjects\UserGrants\SearchUserGrants\SearchUserGrantsRequest;
+use Thundev\Zitadel\Requests\V2\OIDCService\CreateHumanUser\CreateHumanUserRequest;
+use Thundev\Zitadel\Requests\V2\SessionService\CreateSession\CreateSessionRequest;
+use Thundev\Zitadel\Requests\V2\SessionService\SearchSessions\SearchSessionsRequest;
+use Thundev\Zitadel\Requests\V2\UserService\FinalizeAuthRequest\FinalizeAuthRequest;
+use Thundev\Zitadel\Responses\V1\OrganizationObjects\User\CreateMachineUser\CreateMachineUserResponse;
+use Thundev\Zitadel\Responses\V1\OrganizationObjects\User\CreateMachineUserSecret\CreateMachineUserSecretResponse;
+use Thundev\Zitadel\Responses\V1\OrganizationObjects\UserGrants\SearchUserGrants\SearchUserGrantsResponse;
+use Thundev\Zitadel\Responses\V2\OIDCService\CreateHumanUser\CreateHumanUserResponse;
+use Thundev\Zitadel\Responses\V2\SessionService\CreateSession\CreateSessionResponse;
+use Thundev\Zitadel\Responses\V2\SessionService\SearchSessions\SearchSessionsResponse;
+use Thundev\Zitadel\Responses\V2\UserService\FinalizeAuthRequest\FinalizeAuthRequestResponse;
 
 class ZitadelServiceFake implements ZitadelServiceContract
 {
@@ -84,6 +86,15 @@ class ZitadelServiceFake implements ZitadelServiceContract
         ]);
     }
 
+    public function searchSessions(SearchSessionsRequest $request): SearchSessionsResponse
+    {
+        return SearchSessionsResponse::from([
+            'details' => [
+                'timestamp' => 'string',
+            ],
+        ]);
+    }
+
     public function createSession(CreateSessionRequest $request): CreateSessionResponse
     {
         return CreateSessionResponse::from([
@@ -97,9 +108,9 @@ class ZitadelServiceFake implements ZitadelServiceContract
         ]);
     }
 
-    public function finalizeAuth(string $authRequestId, FinalizeAuthRequest $request): FinalizeAuthResponse
+    public function finalizeAuthRequest(string $authRequestId, FinalizeAuthRequest $request): FinalizeAuthRequestResponse
     {
-        return FinalizeAuthResponse::from([
+        return FinalizeAuthRequestResponse::from([
             'callbackUrl' => fake()->url,
             'details' => [
                 'sequence' => '2',

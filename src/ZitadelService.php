@@ -6,12 +6,11 @@ namespace Thundev\Zitadel;
 
 use GuzzleHttp\RequestOptions;
 use Thundev\Zitadel\Contracts\ZitadelServiceContract;
-use Thundev\Zitadel\Traits\HasApiV1;
-use Thundev\Zitadel\Traits\HasApiV2;
 
-class ZitadelService extends ZitadelHttpClient implements ZitadelServiceContract
+class ZitadelService extends HttpClient implements ZitadelServiceContract
 {
-    use HasApiV1, HasApiV2;
+    use Traits\V1;
+    use Traits\V2;
 
     public function __construct(
         private readonly string $baseUri,
