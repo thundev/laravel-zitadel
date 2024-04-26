@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Thundev\Zitadel\Responses\V2\SessionService;
 
+use Illuminate\Support\Optional;
 use Spatie\LaravelData\Data;
 
 class Session extends Data
@@ -12,7 +13,7 @@ class Session extends Data
         public string $id,
         public string $creationDate,
         public string $changeDate,
-        public string $expirationDate,
+        public string|Optional $expirationDate,
     ) {
     }
 }
