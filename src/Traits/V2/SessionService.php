@@ -28,7 +28,7 @@ trait SessionService
     /** @throws GuzzleException */
     public function getSession(GetSessionRequest $request): GetSessionResponse
     {
-        $response = $this->request('POST', "/v2beta/sessions/$request->sessionId", [
+        $response = $this->request('GET', "/v2beta/sessions/$request->sessionId", [
             RequestOptions::QUERY => $request->only('sessionToken')->toArray(),
         ]);
 
