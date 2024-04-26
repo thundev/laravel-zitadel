@@ -16,6 +16,8 @@ trait HasUserServiceRequests
             RequestOptions::JSON => $request->toArray(),
         ]);
 
-        return $this->decodeResponse($response);
+        return FinalizeAuthResponse::from(
+            $this->decodeResponse($response)
+        );
     }
 }
