@@ -11,7 +11,6 @@ class FinalizeAuthRequestResponse extends Data
     public function __construct(
         public string $callbackUrl,
         public Details $details,
-
     ) {
     }
 }

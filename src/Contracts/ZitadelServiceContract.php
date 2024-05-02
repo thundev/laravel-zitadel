@@ -19,6 +19,7 @@ use Thundev\Zitadel\Responses\V2\SessionService\CreateSession\CreateSessionRespo
 use Thundev\Zitadel\Responses\V2\SessionService\GetSessionResponse;
 use Thundev\Zitadel\Responses\V2\SessionService\SearchSessions\SearchSessionsResponse;
 use Thundev\Zitadel\Responses\V2\UserService\FinalizeAuthRequest\FinalizeAuthRequestResponse;
+use Thundev\Zitadel\Responses\V2\UserService\GetAuthRequest\GetAuthRequestResponse;
 
 interface ZitadelServiceContract
 {
@@ -35,6 +36,8 @@ interface ZitadelServiceContract
     public function getSession(GetSessionRequest $request): GetSessionResponse;
 
     public function createSession(CreateSessionRequest $request): CreateSessionResponse;
+
+    public function getAuthRequest(string $authRequestId): GetAuthRequestResponse;
 
     public function finalizeAuthRequest(
         string $authRequestId,

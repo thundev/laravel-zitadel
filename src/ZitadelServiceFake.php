@@ -21,6 +21,7 @@ use Thundev\Zitadel\Responses\V2\SessionService\CreateSession\CreateSessionRespo
 use Thundev\Zitadel\Responses\V2\SessionService\GetSessionResponse;
 use Thundev\Zitadel\Responses\V2\SessionService\SearchSessions\SearchSessionsResponse;
 use Thundev\Zitadel\Responses\V2\UserService\FinalizeAuthRequest\FinalizeAuthRequestResponse;
+use Thundev\Zitadel\Responses\V2\UserService\GetAuthRequest\GetAuthRequestResponse;
 
 class ZitadelServiceFake implements ZitadelServiceContract
 {
@@ -119,6 +120,19 @@ class ZitadelServiceFake implements ZitadelServiceContract
             ],
             'sessionId' => $this->fakeNumerify(),
             'sessionToken' => Hash::make(fake()->text),
+        ]);
+    }
+
+    public function getAuthRequest(string $authRequestId): GetAuthRequestResponse
+    {
+        return GetAuthRequestResponse::from([
+            'authRequest' => [
+                'id' => $authRequestId,
+                'creationDate' => now(),
+                'clientId' => 'string',
+                'scope' => ['string'],
+                'redirectUri' => 'string',
+            ],
         ]);
     }
 
