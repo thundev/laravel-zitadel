@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Thundev\Zitadel\Requests\V1\OrganizationObjects\User;
+namespace Thundev\Zitadel\Requests\V1\OrganizationObjects\Users;
 
 use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Data;

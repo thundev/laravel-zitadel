@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Thundev\Zitadel\Responses\V1\OrganizationObjects\User\CreateMachineUser;
+namespace Thundev\Zitadel\Responses\V1\OrganizationObjects\Users\CreateMachineUserSecret;
 
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Optional;
