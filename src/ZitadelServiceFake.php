@@ -9,6 +9,7 @@ use Thundev\Zitadel\Contracts\ZitadelServiceContract;
 use Thundev\Zitadel\Requests\V1\OrganizationObjects\UserGrants\SearchUserGrants\SearchUserGrantsRequest;
 use Thundev\Zitadel\Requests\V1\OrganizationObjects\Users\CreateMachineUserRequest;
 use Thundev\Zitadel\Requests\V1\OrganizationObjects\Users\SearchUsers\SearchUsersRequest;
+use Thundev\Zitadel\Requests\V1\OrganizationObjects\Users\UpdateUserProfileRequest;
 use Thundev\Zitadel\Requests\V2\OIDCService\CreateHumanUser\CreateHumanUserRequest;
 use Thundev\Zitadel\Requests\V2\SessionService\CreateSession\CreateSessionRequest;
 use Thundev\Zitadel\Requests\V2\SessionService\GetSessionRequest;
@@ -17,7 +18,9 @@ use Thundev\Zitadel\Requests\V2\UserService\FinalizeAuthRequest\FinalizeAuthRequ
 use Thundev\Zitadel\Responses\V1\OrganizationObjects\UserGrants\SearchUserGrants\SearchUserGrantsResponse;
 use Thundev\Zitadel\Responses\V1\OrganizationObjects\Users\CreateMachineUser\CreateMachineUserResponse;
 use Thundev\Zitadel\Responses\V1\OrganizationObjects\Users\CreateMachineUserSecret\CreateMachineUserSecretResponse;
+use Thundev\Zitadel\Responses\V1\OrganizationObjects\Users\GetUserProfile\GetUserProfileResponse;
 use Thundev\Zitadel\Responses\V1\OrganizationObjects\Users\SearchUsers\SearchUsersResponse;
+use Thundev\Zitadel\Responses\V1\OrganizationObjects\Users\UpdateUserProfile\UpdateUserProfileResponse;
 use Thundev\Zitadel\Responses\V2\OIDCService\CreateHumanUser\CreateHumanUserResponse;
 use Thundev\Zitadel\Responses\V2\SessionService\CreateSession\CreateSessionResponse;
 use Thundev\Zitadel\Responses\V2\SessionService\GetSessionResponse;
@@ -27,18 +30,6 @@ use Thundev\Zitadel\Responses\V2\UserService\GetAuthRequest\GetAuthRequestRespon
 
 class ZitadelServiceFake implements ZitadelServiceContract
 {
-    public function createUser(CreateHumanUserRequest $request): CreateHumanUserResponse
-    {
-        return CreateHumanUserResponse::from([
-            'userId' => $request->userId ?? $this->fakeNumerify(),
-            'details' => [
-                'sequence' => '2',
-                'changeDate' => now(),
-                'resourceOwner' => $this->fakeNumerify(),
-            ],
-        ]);
-    }
-
     public function searchUserGrants(SearchUserGrantsRequest $request): SearchUserGrantsResponse
     {
         return SearchUserGrantsResponse::from([
@@ -61,6 +52,39 @@ class ZitadelServiceFake implements ZitadelServiceContract
     {
         return CreateMachineUserResponse::from([
             'userId' => fake()->uuid,
+            'details' => [
+                'sequence' => '2',
+                'creationDate' => now(),
+                'changeDate' => now(),
+                'resourceOwner' => $this->fakeNumerify(),
+            ],
+        ]);
+    }
+
+    public function getUserProfile(string $userId): GetUserProfileResponse
+    {
+        return GetUserProfileResponse::from([
+            'details' => [
+                'sequence' => '2',
+                'creationDate' => now(),
+                'changeDate' => now(),
+                'resourceOwner' => $this->fakeNumerify(),
+            ],
+            'profile' => [
+                'firstName' => 'string',
+                'lastName' => 'string',
+                'nickname' => 'string',
+                'displayName' => 'string',
+                'preferredLanguage' => 'en',
+                'gender' => 'string',
+                'avatarUrl' => 'string',
+            ],
+        ]);
+    }
+
+    public function updateUserProfile(string $userId, UpdateUserProfileRequest $request): UpdateUserProfileResponse
+    {
+        return UpdateUserProfileResponse::from([
             'details' => [
                 'sequence' => '2',
                 'creationDate' => now(),
