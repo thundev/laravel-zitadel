@@ -10,6 +10,7 @@ class ResultItem extends Data
 {
     public function __construct(
         public string $id,
+        public string $state,
         public string $userName,
     ) {
     }
