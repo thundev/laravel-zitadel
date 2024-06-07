@@ -6,9 +6,13 @@ namespace Thundev\Zitadel\Traits\V2;
 
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
+use Thundev\Zitadel\Requests\V2\UserService\ChangePassword\ChangePasswordRequest;
 use Thundev\Zitadel\Requests\V2\UserService\CreateHumanUser\CreateHumanUserRequest;
+use Thundev\Zitadel\Requests\V2\UserService\RequestCodeToResetPassword\RequestCodeToResetPasswordRequest;
 use Thundev\Zitadel\Requests\V2\UserService\SearchUsers\SearchUsersRequest;
+use Thundev\Zitadel\Responses\V2\UserService\ChangePassword\ChangePasswordResponse;
 use Thundev\Zitadel\Responses\V2\UserService\CreateHumanUser\CreateHumanUserResponse;
+use Thundev\Zitadel\Responses\V2\UserService\RequestCodeToResetPassword\RequestCodeToResetPasswordResponse;
 use Thundev\Zitadel\Responses\V2\UserService\SearchUsers\SearchUsersResponse;
 use Thundev\Zitadel\Responses\V2\UserService\UserById\UserByIdResponse;
 
@@ -44,6 +48,30 @@ trait UserService
         $response = $this->request('GET', "/v2beta/users/$userId");
 
         return UserByIdResponse::from(
+            $this->decodeResponse($response)
+        );
+    }
+
+    /** @throws GuzzleException */
+    public function requestCodeToResetPassword(string $userId, RequestCodeToResetPasswordRequest $request): RequestCodeToResetPasswordResponse
+    {
+        $response = $this->request('POST', "/v2beta/users/$userId/password_reset", [
+            RequestOptions::JSON => $request->toArray(),
+        ]);
+
+        return RequestCodeToResetPasswordResponse::from(
+            $this->decodeResponse($response)
+        );
+    }
+
+    /** @throws GuzzleException */
+    public function changePassword(string $userId, ChangePasswordRequest $request): ChangePasswordResponse
+    {
+        $response = $this->request('POST', "/v2beta/users/$userId/password", [
+            RequestOptions::JSON => $request->toArray(),
+        ]);
+
+        return ChangePasswordResponse::from(
             $this->decodeResponse($response)
         );
     }
