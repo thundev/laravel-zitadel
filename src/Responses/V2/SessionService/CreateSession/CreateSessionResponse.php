@@ -6,7 +6,7 @@ namespace Thundev\Zitadel\Responses\V2\SessionService\CreateSession;
 
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Optional;
-use Thundev\Zitadel\Responses\V2\SessionService\CreateSession\Challenges\Challenges;
+use Thundev\Zitadel\Responses\V2\SessionService\DTOs\Challenges\Challenges;
 
 class CreateSessionResponse extends Data
 {

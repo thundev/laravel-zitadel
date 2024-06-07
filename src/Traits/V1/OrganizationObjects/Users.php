@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Thundev\Zitadel\Traits\V1\OrganizationObjects;
 
 use GuzzleHttp\Exception\GuzzleException;
@@ -40,7 +42,7 @@ trait Users
     /** @throws GuzzleException */
     public function createMachineUser(CreateMachineUserRequest $request): CreateMachineUserResponse
     {
-        $response = $this->request('POST', "/management/v1/users/machine", [
+        $response = $this->request('POST', '/management/v1/users/machine', [
             RequestOptions::JSON => $request->toArray(),
         ]);
 

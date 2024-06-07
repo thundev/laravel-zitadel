@@ -13,7 +13,6 @@ use Spatie\LaravelData\Optional;
 class GetSessionRequest extends Data
 {
     public function __construct(
-        public string $sessionId,
         public string|Optional $sessionToken,
     ) {
     }

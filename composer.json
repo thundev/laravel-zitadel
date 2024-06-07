@@ -17,7 +17,7 @@
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
-        "orchestra/testbench": "^8.22"
+        "laravel/pint": "^1.16"
     },
     "extra": {
         "laravel": {
@@ -25,7 +25,8 @@
                 "Thundev\\Zitadel\\ZitadelServiceProvider"
             ],
             "aliases": {
-                "ZitadelService": "Thundev\\Zitadel\\Facades\\ZitadelService"
+                "ZitadelStableService": "Thundev\\Zitadel\\Facades\\ZitadelStableService",
+                "ZitadelBetaService": "Thundev\\Zitadel\\Facades\\ZitadelBetaService"
             }
         }
     }

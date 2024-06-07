@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Thundev\Zitadel\Traits;
 
 trait V2

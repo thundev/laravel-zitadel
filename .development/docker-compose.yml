@@ -1,0 +1,13 @@
+networks:
+  default:
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: development.Dockerfile
+    volumes:
+      - ../.:/var/www/html:delegated
+    environment:
+      XDEBUG_MODE: "${XDEBUG_MODE-off}"
+      XDEBUG_CONFIG: 'start_with_request=yes client_host=${XDEBUG_CONFIG_CLIENT_HOST-} idekey=${XDEBUG_CONFIG_IDEKEY-}'

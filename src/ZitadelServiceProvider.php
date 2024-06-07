@@ -6,14 +6,22 @@ namespace Thundev\Zitadel;
 
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
-use Thundev\Zitadel\Contracts\ZitadelServiceContract;
+use Thundev\Zitadel\Contracts\ZitadelBetaServiceContract;
+use Thundev\Zitadel\Contracts\ZitadelStableServiceContract;
 
 class ZitadelServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     public function register(): void
     {
-        $this->app->singleton(ZitadelServiceContract::class, function() {
-            return new ZitadelService(
+        $this->app->singleton(ZitadelStableServiceContract::class, function() {
+            return new ZitadelStableService(
+                config('zitadel.base_uri'),
+                config('zitadel.api_token'),
+            );
+        });
+
+        $this->app->singleton(ZitadelBetaServiceContract::class, function() {
+            return new ZitadelBetaService(
                 config('zitadel.base_uri'),
                 config('zitadel.api_token'),
             );
@@ -30,7 +38,8 @@ class ZitadelServiceProvider extends ServiceProvider implements DeferrableProvid
     public function provides(): array
     {
         return [
-            ZitadelServiceContract::class,
+            ZitadelStableServiceContract::class,
+            ZitadelBetaServiceContract::class,
         ];
     }
 }
