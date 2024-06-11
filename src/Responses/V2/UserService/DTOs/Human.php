@@ -10,7 +10,6 @@ use Spatie\LaravelData\Optional;
 class Human extends Data
 {
     public function __construct(
-        public string $userId,
         public bool|Optional $passwordChangeRequired,
     ) {
     }

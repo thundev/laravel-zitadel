@@ -10,9 +10,9 @@ use Spatie\LaravelData\Optional;
 class User extends Data
 {
     public function __construct(
-        public string $id,
+        public string $userId,
         public string $state,
-        public string $userName,
+        public string $username,
         public Human|Optional $human,
     ) {
     }
