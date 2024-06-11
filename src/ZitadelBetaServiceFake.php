@@ -47,7 +47,7 @@ class ZitadelBetaServiceFake implements ZitadelBetaServiceContract
     {
         return SearchUsersResponse::from([
             'details' => [
-                'viewTimestamp' => 'string',
+                'timestamp' => 'string',
             ],
         ]);
     }

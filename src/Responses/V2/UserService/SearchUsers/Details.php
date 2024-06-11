@@ -11,7 +11,7 @@ class Details extends Data
 {
     public function __construct(
         public string|Optional $totalResult,
-        public string $viewTimestamp,
+        public string $timestamp,
     ) {
     }
 }
