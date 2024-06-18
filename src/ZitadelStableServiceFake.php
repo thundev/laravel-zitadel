@@ -8,12 +8,14 @@ use Thundev\Zitadel\Contracts\ZitadelStableServiceContract;
 use Thundev\Zitadel\Requests\V1\OrganizationObjects\UserGrants\SearchUserGrants\SearchUserGrantsRequest;
 use Thundev\Zitadel\Requests\V1\OrganizationObjects\Users\CreateMachineUserRequest;
 use Thundev\Zitadel\Requests\V1\OrganizationObjects\Users\SearchUsers\SearchUsersRequest;
+use Thundev\Zitadel\Requests\V1\OrganizationObjects\Users\SetUserPasswordRequest;
 use Thundev\Zitadel\Requests\V1\OrganizationObjects\Users\UpdateUserProfileRequest;
 use Thundev\Zitadel\Responses\V1\OrganizationObjects\UserGrants\SearchUserGrants\SearchUserGrantsResponse;
 use Thundev\Zitadel\Responses\V1\OrganizationObjects\Users\CreateMachineUser\CreateMachineUserResponse;
 use Thundev\Zitadel\Responses\V1\OrganizationObjects\Users\CreateMachineUserSecret\CreateMachineUserSecretResponse;
 use Thundev\Zitadel\Responses\V1\OrganizationObjects\Users\GetUserProfile\GetUserProfileResponse;
 use Thundev\Zitadel\Responses\V1\OrganizationObjects\Users\SearchUsers\SearchUsersResponse;
+use Thundev\Zitadel\Responses\V1\OrganizationObjects\Users\SetUserPassword\SetUserPasswordResponse;
 use Thundev\Zitadel\Responses\V1\OrganizationObjects\Users\UpdateUserProfile\UpdateUserProfileResponse;
 
 class ZitadelStableServiceFake implements ZitadelStableServiceContract
@@ -89,6 +91,18 @@ class ZitadelStableServiceFake implements ZitadelStableServiceContract
         return CreateMachineUserSecretResponse::from([
             'clientId' => $faker->userName,
             'clientSecret' => $faker->password,
+            'details' => [
+                'sequence' => '2',
+                'creationDate' => now(),
+                'changeDate' => now(),
+                'resourceOwner' => $this->fakeNumerify(),
+            ],
+        ]);
+    }
+
+    public function setUserPassword(string $userId, SetUserPasswordRequest $request): SetUserPasswordResponse
+    {
+        return SetUserPasswordResponse::from([
             'details' => [
                 'sequence' => '2',
                 'creationDate' => now(),
