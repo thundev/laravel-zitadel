@@ -12,8 +12,10 @@ use Thundev\Zitadel\Requests\V2\UserService\RequestCodeToResetPassword\RequestCo
 use Thundev\Zitadel\Requests\V2\UserService\SearchUsers\SearchUsersRequest;
 use Thundev\Zitadel\Responses\V2\UserService\ChangePassword\ChangePasswordResponse;
 use Thundev\Zitadel\Responses\V2\UserService\CreateHumanUser\CreateHumanUserResponse;
+use Thundev\Zitadel\Responses\V2\UserService\LockUser\LockUserResponse;
 use Thundev\Zitadel\Responses\V2\UserService\RequestCodeToResetPassword\RequestCodeToResetPasswordResponse;
 use Thundev\Zitadel\Responses\V2\UserService\SearchUsers\SearchUsersResponse;
+use Thundev\Zitadel\Responses\V2\UserService\UnlockUser\UnlockUserResponse;
 use Thundev\Zitadel\Responses\V2\UserService\UserById\UserByIdResponse;
 
 trait UserService
@@ -72,6 +74,26 @@ trait UserService
         ]);
 
         return ChangePasswordResponse::from(
+            $this->decodeResponse($response)
+        );
+    }
+
+    /** @throws GuzzleException */
+    public function lockUser(string $userId): LockUserResponse
+    {
+        $response = $this->request('POST', "/v2beta/users/$userId/lock");
+
+        return LockUserResponse::from(
+            $this->decodeResponse($response)
+        );
+    }
+
+    /** @throws GuzzleException */
+    public function unlockUser(string $userId): UnlockUserResponse
+    {
+        $response = $this->request('POST', "/v2beta/users/$userId/unlock");
+
+        return UnlockUserResponse::from(
             $this->decodeResponse($response)
         );
     }

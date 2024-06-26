@@ -23,8 +23,10 @@ use Thundev\Zitadel\Responses\V2\SessionService\SearchSessions\SearchSessionsRes
 use Thundev\Zitadel\Responses\V2\SessionService\UpdateSession\UpdateSessionResponse;
 use Thundev\Zitadel\Responses\V2\UserService\ChangePassword\ChangePasswordResponse;
 use Thundev\Zitadel\Responses\V2\UserService\CreateHumanUser\CreateHumanUserResponse;
+use Thundev\Zitadel\Responses\V2\UserService\LockUser\LockUserResponse;
 use Thundev\Zitadel\Responses\V2\UserService\RequestCodeToResetPassword\RequestCodeToResetPasswordResponse;
 use Thundev\Zitadel\Responses\V2\UserService\SearchUsers\SearchUsersResponse;
+use Thundev\Zitadel\Responses\V2\UserService\UnlockUser\UnlockUserResponse;
 use Thundev\Zitadel\Responses\V2\UserService\UserById\UserByIdResponse;
 
 class ZitadelBetaServiceFake implements ZitadelBetaServiceContract
@@ -77,6 +79,28 @@ class ZitadelBetaServiceFake implements ZitadelBetaServiceContract
     public function changePassword(string $userId, ChangePasswordRequest $request): ChangePasswordResponse
     {
         return ChangePasswordResponse::from([
+            'details' => [
+                'sequence' => '2',
+                'changeDate' => now(),
+                'resourceOwner' => $this->fakeNumerify(),
+            ],
+        ]);
+    }
+
+    public function lockUser(string $userId): LockUserResponse
+    {
+        return LockUserResponse::from([
+            'details' => [
+                'sequence' => '2',
+                'changeDate' => now(),
+                'resourceOwner' => $this->fakeNumerify(),
+            ],
+        ]);
+    }
+
+    public function unlockUser(string $userId): UnlockUserResponse
+    {
+        return UnlockUserResponse::from([
             'details' => [
                 'sequence' => '2',
                 'changeDate' => now(),

@@ -21,8 +21,10 @@ use Thundev\Zitadel\Responses\V2\SessionService\SearchSessions\SearchSessionsRes
 use Thundev\Zitadel\Responses\V2\SessionService\UpdateSession\UpdateSessionResponse;
 use Thundev\Zitadel\Responses\V2\UserService\ChangePassword\ChangePasswordResponse;
 use Thundev\Zitadel\Responses\V2\UserService\CreateHumanUser\CreateHumanUserResponse;
+use Thundev\Zitadel\Responses\V2\UserService\LockUser\LockUserResponse;
 use Thundev\Zitadel\Responses\V2\UserService\RequestCodeToResetPassword\RequestCodeToResetPasswordResponse;
 use Thundev\Zitadel\Responses\V2\UserService\SearchUsers\SearchUsersResponse;
+use Thundev\Zitadel\Responses\V2\UserService\UnlockUser\UnlockUserResponse;
 use Thundev\Zitadel\Responses\V2\UserService\UserById\UserByIdResponse;
 
 interface ZitadelBetaServiceContract
@@ -36,6 +38,10 @@ interface ZitadelBetaServiceContract
     public function requestCodeToResetPassword(string $userId, RequestCodeToResetPasswordRequest $request): RequestCodeToResetPasswordResponse;
 
     public function changePassword(string $userId, ChangePasswordRequest $request): ChangePasswordResponse;
+
+    public function lockUser(string $userId): LockUserResponse;
+
+    public function unlockUser(string $userId): UnlockUserResponse;
 
     public function searchSessions(SearchSessionsRequest $request): SearchSessionsResponse;
 
